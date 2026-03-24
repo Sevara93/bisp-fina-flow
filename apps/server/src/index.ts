@@ -3,6 +3,7 @@ import { env } from "@bisp-final-flow/env/server";
 import { toNodeHandler } from "better-auth/node";
 import cors from "cors";
 import express from "express";
+import { requireAuth } from "./middleware/auth.middleware";
 
 const app = express();
 
@@ -25,4 +26,8 @@ app.get("/", (_req, res) => {
 
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
+});
+
+app.get("/api/me", requireAuth, (req, res) => {
+  res.json(req.user);
 });
