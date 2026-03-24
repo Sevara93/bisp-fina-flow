@@ -9,6 +9,7 @@ export const env = createEnv({
     BETTER_AUTH_URL: z.url(),
     CORS_ORIGIN: z.url(),
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+    TELEGRAM_BOT_TOKEN: z.string().min(1),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
